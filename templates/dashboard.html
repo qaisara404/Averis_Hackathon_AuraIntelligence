@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h2 style="font-family: 'Sora', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Selamat Datang ke ShipIntelligence</h2>
+        <!-- ⌨️ Kesan Typewriter Dinamik di Sini -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: var(--accent-blue); font-weight: bold;">[AI_LOG]:</span>
+            <span id="typewriter-text" class="typewriter" data-text="Menganalisis kemasukan e-mel bil dokumen perkapalan semasa...">Menunggu sistem...</span>
+        </div>
+    </div>
+</header>
+
+<!-- 🎴 Barisan Kad Statistik Glassmorphic -->
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px;">
+    <div class="glass-card" style="border-bottom: 4px solid var(--text-primary);">
+        <h3 style="color: var(--text-secondary); font-size: 14px; text-transform: uppercase;">Total Processed</h3>
+        <p style="font-size: 36px; font-weight: 700; margin-top: 10px; font-family: 'Sora', sans-serif;">156</p>
+    </div>
+    <div class="glass-card" style="border-bottom: 4px solid var(--accent-success); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);">
+        <h3 style="color: var(--text-secondary); font-size: 14px; text-transform: uppercase;">Matched (OK)</h3>
+        <p style="font-size: 36px; font-weight: 700; margin-top: 10px; color: var(--accent-success); font-family: 'Sora', sans-serif;">112</p>
+    </div>
+    <div class="glass-card" style="border-bottom: 4px solid var(--accent-danger); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);">
+        <h3 style="color: var(--text-secondary); font-size: 14px; text-transform: uppercase;">Mismatches</h3>
+        <p style="font-size: 36px; font-weight: 700; margin-top: 10px; color: var(--accent-danger); font-family: 'Sora', sans-serif;">32</p>
+    </div>
+    <div class="glass-card" style="border-bottom: 4px solid var(--accent-purple); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.1);">
+        <h3 style="color: var(--text-secondary); font-size: 14px; text-transform: uppercase;">Manual Review</h3>
+        <p style="font-size: 36px; font-weight: 700; margin-top: 10px; color: var(--accent-purple); font-family: 'Sora', sans-serif;">12</p>
+    </div>
+</div>
+
+<!-- 📦 Aktiviti Sistem Terkini (Live Audit Feed) -->
+<div class="glass-card">
+    <h3 style="font-family: 'Sora', sans-serif; margin-bottom: 20px;">Aktiviti Audit Terkini</h3>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>No. Rujukan</th>
+                <th>Dokumen</th>
+                <th>Kategori AI</th>
+                <th>Status Audit</th>
+                <th>Tindakan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#REF-98302</td>
+                <td>BL_Averis_2026.pdf</td>
+                <td>BL Comparison</td>
+                <td><span style="color: var(--accent-success); font-weight: 600;">✔️ OK (Match)</span></td>
+                <td><button class="glass-card" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer;">Papar</button></td>
+            </tr>
+            <tr style="background: rgba(239, 68, 68, 0.03);">
+                <td>#REF-98301</td>
+                <td>SI_Monash_Draft.txt</td>
+                <td>BL Comparison</td>
+                <td><span style="color: var(--accent-danger); font-weight: 600; animation: blink 1.5s infinite;">❌ Mismatch</span></td>
+                <td><a href="/comparison" class="glass-card" style="padding: 6px 12px; border-radius: 8px; font-size: 12px; text-decoration: none; color: var(--text-primary); background: var(--accent-danger); border-color: var(--accent-danger);">Selesaikan</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

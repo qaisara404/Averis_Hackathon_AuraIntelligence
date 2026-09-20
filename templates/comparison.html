@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header style="margin-bottom: 30px;">
+    <h2 style="font-family: 'Sora', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 5px;">Audit & Perbandingan Dokumen</h2>
+    <p style="color: var(--text-secondary);">ID E-mel: #REF-98301 | Membandingkan data teks Shipping Instruction (SI) lawan Bill of Lading (BL)</p>
+</header>
+
+<div class="comparison-container">
+    <!-- 📄 Panel Kiri: Shipping Instruction -->
+    <div class="glass-card si-panel">
+        <h3 style="font-family: 'Sora', sans-serif; color: var(--accent-blue); margin-bottom: 20px;">Shipping Instruction (SI)</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+                <span style="font-size: 12px; color: var(--text-secondary);">Shipper</span>
+                <p style="font-weight: 600; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px;">Averis Resources Sdn Bhd</p>
+            </div>
+            <!-- Ralat dikesan: Menggunakan Class Mismatch Highlight -->
+            <div class="mismatch-highlight" style="padding: 12px; border-radius: 8px;">
+                <span style="font-size: 12px; color: var(--accent-danger); font-weight: bold;">⚠️ Consignee (Penerima)</span>
+                <p style="font-weight: 600; margin-top: 4px;">Monash Industries Ltd</p>
+            </div>
+            <div>
+                <span style="font-size: 12px; color: var(--text-secondary);">Container Count</span>
+                <p style="font-weight: 600; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px;">15 Units</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📄 Panel Kanan: Bill of Lading -->
+    <div class="glass-card bl-panel">
+        <h3 style="font-family: 'Sora', sans-serif; color: var(--accent-purple); margin-bottom: 20px;">Bill of Lading (BL)</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div>
+                <span style="font-size: 12px; color: var(--text-secondary);">Shipper</span>
+                <p style="font-weight: 600; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px;">Averis Resources Sdn Bhd</p>
+            </div>
+            <!-- Ralat dikesan: Padanan ralat penerima yang bercanggah -->
+            <div class="mismatch-highlight" style="padding: 12px; border-radius: 8px;">
+                <span style="font-size: 12px; color: var(--accent-danger); font-weight: bold;">⚠️ Consignee (Penerima)</span>
+                <p style="font-weight: 600; margin-top: 4px;">Monash Industrial Corporation</p>
+            </div>
+            <div>
+                <span style="font-size: 12px; color: var(--text-secondary);">Container Count</span>
+                <p style="font-weight: 600; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 8px;">15 Units</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🛠️ Bahagian Keputusan & Tindakan Audit -->
+<div class="glass-card" style="margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--accent-danger);">
+    <div>
+        <h4 style="color: var(--accent-danger); font-weight: 700; margin-bottom: 5px;">Status Audit: Mismatch Terkesan</h4>
+        <p style="font-size: 13px; color: var(--text-secondary);">Ketidakpadanan dikesan pada medan [Consignee] (Monash Industries Ltd vs Monash Industrial Corporation).</p>
+    </div>
+    <div style="display: flex; gap: 12px;">
+        <button class="glass-card" style="padding: 10px 20px; border-radius: 8px; font-weight: bold; background: var(--accent-danger); border-color: var(--accent-danger); color: white; cursor: pointer;">Tolak Dokumen</button>
+        <button class="glass-card" style="padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">Hantar ke Semakan Manual</button>
+    </div>
+</div>
+{% endblock %}
