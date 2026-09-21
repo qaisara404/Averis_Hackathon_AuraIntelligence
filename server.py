@@ -11,9 +11,6 @@ import re
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 
-# Cloud Generative AI Library
-import google.generativeai as genai
-
 # Multi-format document libraries
 import openpyxl
 from docx import Document
@@ -28,14 +25,6 @@ ATTACHMENTS_DIR = 'attachments'
 GT_FILE = 'ground_truth.json'
 
 manual_decisions = {}
-
-# --- CLOUD AI CONFIGURATION (GOOGLE GEMINI) ---
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if GEMINI_API_KEY:
-    try:
-        genai.configure(api_key=GEMINI_API_KEY)
-    except Exception as e:
-        print(f"[WARNING] Gemini AI initialization skipped: {e}")
 
 # --- HELPER FUNCTIONS ---
 
@@ -385,42 +374,9 @@ def save_decision():
         "message": f"Document {email_id} updated to {decision}"
     })
 
-# --- CLOUD AI ENDPOINT (GOOGLE GEMINI FORENSIC REASONING) ---
-@app.route('/api/ai_audit_reasoning', methods=['POST'])
-def ai_audit_reasoning():
-    """Utilizes Cloud AI (Google Gemini) for autonomous legal and maritime risk assessments."""
-    payload = request.get_json() or {}
-    email_id = payload.get('email_id', 'Unknown')
-    discrepancy_details = payload.get('discrepancies', [])
-
-    if not GEMINI_API_KEY:
-        return jsonify({
-            "email_id": email_id,
-            "ai_reasoning": "AI Forensic Engine: Discrepancy flagged under maritime trade rule ICC 500. Proactive amendment required prior to vessel departure to eliminate demurrage liabilities."
-        })
-
-    try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        prompt = f"""
-        Act as the Senior Maritime Compliance AI Auditor for Averis Logistics.
-        A shipment discrepancy was detected in document {email_id}:
-        Discrepant fields: {json.dumps(discrepancy_details)}
-        
-        Provide a concise 2-sentence legal risk assessment and immediate recommended action for port clearance.
-        """
-        response = model.generate_content(prompt)
-        ai_verdict = response.text.strip()
-    except Exception as e:
-        ai_verdict = "AI Forensic Engine: Discrepancy flagged under maritime trade rule ICC 500. Proactive draft amendment required prior to vessel berthing."
-
-    return jsonify({"email_id": email_id, "ai_reasoning": ai_verdict})
-
-# --- CLOUD DEPLOYMENT INITIALIZATION (RENDER & LOCAL READY) ---
 if __name__ == '__main__':
-    # Membaca pembolehubah PORT dari persekitaran Render; lalai kepada 5000 jika dijalankan di laptop
-    port = int(os.environ.get("PORT", 5000))
     print("=================================================================")
-    print(f" 🚀 ShipIntelligence V 2.0 is running on port {port}")
+    print(" 🚀 ShipIntelligence V 2.0 is running at http://localhost:5000")
     print(" Developed by AuraIntelligence | Ready for Averis Hackathon 2026")
     print("=================================================================")
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
