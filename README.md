@@ -8,7 +8,7 @@ A production-ready, AI-powered web portal designed to eliminate critical human e
 **Faculty:** Faculty of Computer Science & Information Technology  
 **Team Name:** Team Aura_Intelligence  
 **Lead Software Architect & UI/UX Specialist:** Qaisara Bahira binti Baharuddin  
-**Visual Communications Lead & Multimedia Specialist:** [SILA MASUKKAN NAMA KAWAN ANDA DI SINI]
+**Visual Communications Lead & Multimedia Specialist:** Vanishaa a/p Kalliapan
 
 ---
 
